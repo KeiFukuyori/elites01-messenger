@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   
+  # 未ログイン状態でホーム画面にアクセスした場合に、ログイン画面にリダイレクトするようにする
+  before_action :authenticate_user!
+  
   # deviseのコントローラを実行するときは「configure_permitted_parameters」メソッドを実行する
   before_action :configure_permitted_parameters, if: :devise_controller?
   
